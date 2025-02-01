@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Ghost, UserIcon } from "lucide-react";
+import { UserIcon } from "lucide-react";
 import Link from "next/link";
 import { auth } from '@/auth'
 import { signOutUser } from "@/lib/actions/user.actions";

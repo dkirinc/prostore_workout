@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { error } from "console";
 import { twMerge } from "tailwind-merge"
+import { number } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -44,3 +45,20 @@ export function round2(value: number | string) {
     throw new Error('Value is not a number or strin')
   }
 }
+
+const CURRENCY_FORMATTER = new Intl.NumberFormat('en-US', {
+  currency: 'USD',
+  style: 'currency',
+  minimumFractionDigits: 2
+})
+
+//Format currenccy using the formatter above
+export function formatCurrency(amount: number | string | null) {
+  if (typeof amount === 'number') {
+    return CURRENCY_FORMATTER.format(amount)
+  } else if (typeof amount === 'string') {
+    return CURRENCY_FORMATTER.format(Number(amount))
+  } else {
+    return 'Nan'
+  }
+} 
